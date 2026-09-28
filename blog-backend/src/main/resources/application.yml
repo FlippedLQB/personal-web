@@ -1,0 +1,44 @@
+server:
+  port: 8080
+
+spring:
+  profiles:
+    active: dev
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: Asia/Shanghai
+
+# MyBatis-Plus
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-field: null
+
+# JWT 配置
+blog:
+  jwt:
+    secret: blog-secret-key-2026-must-be-at-least-32-characters-long
+    expiration: 86400000  # 24小时(毫秒)
+    header: Authorization
+    prefix: "Bearer "
+  oss:
+    endpoint: oss-cn-beijing.aliyuncs.com
+    access-key-id: your-access-key-id
+    access-key-secret: your-access-key-secret
+    bucket-name: your-bucket-name
+    domain: https://your-bucket-name.oss-cn-beijing.aliyuncs.com
+  rate-limit:
+    # 注册：5次/IP/天
+    register: 5
+    # 评论：20次/IP/天
+    comment: 20
+    # 登录：10次/IP/分钟
+    login-ip: 10
+    # 登录失败锁定：5次
+    login-fail-limit: 5
+    # 登录锁定时长：10分钟
+    login-lock-minutes: 10
